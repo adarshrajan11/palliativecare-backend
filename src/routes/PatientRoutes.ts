@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express'
 import Patient from '../models/Patient'
 import { check, validationResult } from 'express-validator'
+import { parseDDMMYY } from '../common/commonfunc'
 
 const router = Router()
 
@@ -33,11 +34,19 @@ router.post(
 router.get('/', async (req: Request, res: Response) => {
   try {
     const patients = await Patient.find()
-    res.status(200).json(patients)
+
+    // Format the homeCareDate for each patient
+    const formattedPatients = patients.map((patient) => ({
+      ...patient.toObject(),
+      homeCareDate: parseDDMMYY(patient.homeCareDate),
+    }))
+
+    res.json(formattedPatients)
   } catch (error) {
     res.status(500).json({ message: 'Server error', error })
   }
 })
+
 
 // @route   GET /api/patients/:id
 // @desc    Get a patient by ID

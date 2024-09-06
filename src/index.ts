@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import patientRoutes from './routes/PatientRoutes'
 import inventoryRoutes from './routes/InventoryRoutes'
 import authRoutes from './routes/authRoutes'
-import loginRoute from './routes/loginRoute' 
+import loginRoute from './routes/loginRoute'
 dotenv.config()
 
 const app = express()
@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000
 connectDB()
 
 // Enable CORS
-app.use(cors)
+app.use(cors()) // i forgot to add bracket here and wasted entire day trying to fix cors error
 // Middleware to parse JSON requests
 app.use(express.json())
 
