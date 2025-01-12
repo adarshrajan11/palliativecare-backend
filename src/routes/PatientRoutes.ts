@@ -38,7 +38,7 @@ router.get('/', async (req: Request, res: Response) => {
     // Format the homeCareDate for each patient
     const formattedPatients = patients.map((patient) => ({
       ...patient.toObject(),
-      homeCareDate: parseDDMMYY(patient.homeCareDate),
+      homeCareDate: parseDDMMYY(patient.homeCareDate.toLocaleDateString()),
     }))
 
     res.json(formattedPatients)

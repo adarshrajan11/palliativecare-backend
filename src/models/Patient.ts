@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose'
-import { parseDDMMYY } from '../common/commonfunc' // Adjust the path as needed
-
+import { parseDDMMYY } from '../common/commonfunc'
 export interface IPatient extends Document {
   name: string
   age: number
